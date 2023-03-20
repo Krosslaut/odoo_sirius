@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="bsi_merge_invoices_action" model="ir.ui.view">
+			<field name="name"> Merge Invoices </field>
+			<field name="model">bsi.merge.invoices</field>
+			<field name="arch" type="xml">
+				<form string="Invoices">
+				<sheet>
+					<group>
+						<field name="customer" />
+						<field name="invoice_date"/>
+						<field name="account_move_line"  widget="many2many_tags" invisible="1" />
+					</group>
+					<footer>
+						<button name="merge_invoice" string="Merge Invoice" type="object" class="btn btn-primary" />
+
+						<button name="merge_andnew" string="Merge and New" type="object"  class="btn btn-primary" id="create_wizard_open" context="{'open_wizard': True}" />
+
+						<button name="merge_andview" string="Merge and View" type="object" class="btn btn-primary" />
+
+						<button string="Cancel" type="object" class="btn btn-secondary" special="cancel"/>
+					</footer>
+				</sheet>
+				</form>
+			</field>
+		</record>	
+
+		<record id="action_bsi_merge_invoices" model="ir.actions.act_window">
+	        <field name="name"> Merge Invoices</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">bsi.merge.invoices</field>
+	        <field name="view_mode">form</field>
+	        <field name="view_id" ref="bsi_merge_invoices_action"/>
+	        <field name="target">new</field>
+	        <field name="binding_model_id" ref="account.model_account_move" />
+   		</record>
+	</data>
+</odoo>

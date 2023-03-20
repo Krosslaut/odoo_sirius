@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bsi_merge_any_invoices
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-26 11:40+0000\n"
+"PO-Revision-Date: 2022-12-26 11:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.actions.act_window,name:bsi_merge_any_invoices.action_bsi_merge_invoices
+msgid " Merge Invoices"
+msgstr "合并发票"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__account_move_line
+msgid "Account"
+msgstr "帐户"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model,name:bsi_merge_any_invoices.model_bsi_merge_invoices
+msgid "Bsi Merge Invoices "
+msgstr "Bsi 合并发票"
+
+#. module: bsi_merge_any_invoices
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_invoices.bsi_merge_invoices_action
+msgid "Cancel"
+msgstr "取消"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__create_uid
+msgid "Created by"
+msgstr "由...制作"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__customer
+msgid "Customer"
+msgstr "顾客"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__id
+msgid "ID"
+msgstr "ID"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__invoice_date
+msgid "Invoice Date"
+msgstr "发票日期"
+
+#. module: bsi_merge_any_invoices
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_invoices.bsi_merge_invoices_action
+msgid "Invoices"
+msgstr "发票"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices____last_update
+msgid "Last Modified on"
+msgstr "最后修改于"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: bsi_merge_any_invoices
+#: model:ir.model.fields,field_description:bsi_merge_any_invoices.field_bsi_merge_invoices__write_date
+msgid "Last Updated on"
+msgstr "最后更新于"
+
+#. module: bsi_merge_any_invoices
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_invoices.bsi_merge_invoices_action
+msgid "Merge Invoice"
+msgstr "合并发票"
+
+#. module: bsi_merge_any_invoices
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_invoices.bsi_merge_invoices_action
+msgid "Merge and New"
+msgstr "合并和新建"
+
+#. module: bsi_merge_any_invoices
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_invoices.bsi_merge_invoices_action
+msgid "Merge and View"
+msgstr "合并和查看"

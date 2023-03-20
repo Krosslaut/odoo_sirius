@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bsi_merge_any_quotations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-26 12:09+0000\n"
+"PO-Revision-Date: 2022-12-26 12:09+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model,name:bsi_merge_any_quotations.model_bsi_merge_quotations
+msgid "Bsi Merge Quotations "
+msgstr "Bsi Zitate zusammenführen"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Cancel"
+msgstr "Stornieren"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__customer
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__id
+msgid "ID"
+msgstr "ICH WÜRDE"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.actions.act_window,name:bsi_merge_any_quotations.action_bsi_merge_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge Quotations"
+msgstr "Zitate zusammenführen"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge and New"
+msgstr "Zusammenführen und neu"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge and View"
+msgstr "Zusammenführen und anzeigen"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Quotations"
+msgstr "Zitate"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__quotations_date
+msgid "Quotations Date"
+msgstr "Angebote Datum"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__sale_order_line
+msgid "Sale"
+msgstr "Verkauf"

@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bsi_merge_any_quotations
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-26 12:23+0000\n"
+"PO-Revision-Date: 2022-12-26 12:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model,name:bsi_merge_any_quotations.model_bsi_merge_quotations
+msgid "Bsi Merge Quotations "
+msgstr "Bsi合并报价单"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Cancel"
+msgstr "取消"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__create_uid
+msgid "Created by"
+msgstr "由...制作"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__customer
+msgid "Customer"
+msgstr "顾客"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__id
+msgid "ID"
+msgstr "ID"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations____last_update
+msgid "Last Modified on"
+msgstr "最后修改于"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__write_date
+msgid "Last Updated on"
+msgstr "最后更新于"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.actions.act_window,name:bsi_merge_any_quotations.action_bsi_merge_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge Quotations"
+msgstr "合并报价"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge and New"
+msgstr "合并和新建"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Merge and View"
+msgstr "合并和查看"
+
+#. module: bsi_merge_any_quotations
+#: model_terms:ir.ui.view,arch_db:bsi_merge_any_quotations.bsi_merge_quotations_action
+msgid "Quotations"
+msgstr "语录"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__quotations_date
+msgid "Quotations Date"
+msgstr "报价日期"
+
+#. module: bsi_merge_any_quotations
+#: model:ir.model.fields,field_description:bsi_merge_any_quotations.field_bsi_merge_quotations__sale_order_line
+msgid "Sale"
+msgstr "销售"
