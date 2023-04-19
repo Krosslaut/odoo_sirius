@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <data>
+    <record id="atleta_view_kanban" model="ir.ui.view">
+      <field name="name">Atletas Kanban</field>
+      <field name="model">sirius.athlete</field>
+      <field name="arch" type="xml">
+        <kanban class="o_res_partner_kanban">
+          <field name="id"/>
+          <field name="image_1920"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                <div class="o_kanban_image">
+                  <t t-if="record.image_1920.value">
+                    <field name="image_1920" widget="image" options="{'no_marker': True, 'zoom': true, 'default_image': 'web/static/src/img/placeholder.png'}"></field>
+                    <!--<img t-att-src="kanban_image('sirius.athlete', 'image_1920', record.id.raw_value)" alt="Atleta"/> -->
+                  </t>
+                  <!-- <t t-if="!record.image_1920.value">
+                    <img t-att-src='_s + "/base/static/img/avatar.png"' alt="Atleta"/>
+                  </t> -->
+                </div>
+                <div class="oe_kanban_details">
+                  <h4>
+                    <a type="open">
+                      <field name="name"/>
+                    </a>
+                  </h4>
+                  <ul>
+                    <li t-if="record.vat">
+                      <span>Cédula:</span>
+                      <field name="vat"/>
+                    </li>
+                    <li t-if="record.sangre">
+                      <span>Típo de Sangre:</span>
+                      <field name="blood_type"/>
+                    </li>
+                    <li t-if="record.gen">
+                      <span>Género:</span>
+                      <field name="sex"/>
+                    </li>
+                    <li t-if="record.grade">
+                      <span>Grado:</span>
+                      <field name="grade"/>
+                    </li>
+                    <li t-if="record.athlete_category">
+                      <span>Categoría:</span>
+                      <field name="athlete_category"/>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+    <!-- explicit list view definition -->
+    <record id="atleta_view_list" model="ir.ui.view">
+      <field name="name">Lista de Atletas</field>
+      <field name="model">sirius.athlete</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="sex"/>
+          <field name="grade"/>
+          <field name="athlete_category"/>
+          <field name="subdivision_id"/>
+          <field name="is_kai" string="Kata Individual"/>
+          <field name="is_kae" string="Kata Equipo"/>
+          <field name="is_kui" string="Kumite Individual"/>
+          <field name="is_kue" string="Kumite Equipo"/>
+          <!--field name="academia_id"/-->
+          <!--field name="sensei_id"/-->
+        </tree>
+      </field>
+    </record>
+    <record id="atleta_view_form" model="ir.ui.view">
+      <field name="name">Formulario de nuevos atletas</field>
+      <field name="model">sirius.athlete</field>
+      <field name="arch" type="xml">
+        <form string="Registro de Usuario">
+          <header groups="base.group_user">
+            <button name="act_send" states="draft"
+                    type="object" string="Enviar"
+                    class="oe_highlight" groups="sirius_athletic_system.sirius_group_athlete"/>
+            <button name="act_set_to_draft" states="send,canceled"
+                    type="object" string="Pasar a Borrador"
+                    groups="sirius_athletic_system.sirius_group_athlete"/>
+            <button name="act_approved" class="oe_highlight"
+                    states="send" type="object" string="Confirmar"
+                    groups="sirius_athletic_system.sirius_group_sensei"/>
+            <button name="act_canceled" states="approved,send"
+                    type="object" string="Cancel"
+                    groups="sirius_athletic_system.sirius_group_sensei"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,send,approved"/>
+          </header>
+        <sheet>
+          <h1>Plantilla de Atleta</h1>
+            <group name="membrete">
+              <group name="imagen">
+                <!-- <field name="image_1920" widget="image" filename="name"/> -->
+                <field name="image_1920" 
+                  widget='image' 
+                  class="oe_avatar" 
+                  nolabel="1"/>
+              </group>
+              <group name="nombres" class="oe_title">
+                    <field name="name" placeholder="Name" required="1" invisible="1"/>
+                    <field name="first_name" required="1" placeholder="Primer Nombre" nolabel="1"/>
+                    <field name="second_name" placeholder="Segundo Nombre" nolabel="1"/>
+                    <field name="middle_name" placeholder="Primer Apellido"  required="1" nolabel="1"/>
+                    <field name="last_name" placeholder="Segundo Apellido" nolabel="1"/>
+              </group>
+            </group>
+            <group>
+              <group name="nombres" string = "Identificación">
+                <field name="athlete_code"/>
+                <field name="date" string='Fecha de Nacimiento'/>   
+                <field name="sex"/>
+                <field name="age" string = "Edad"/>
+              </group>
+              <group></group>
+            </group>
+            <group name="nacionalidad">
+              <group>
+                <field name="is_kai"/>
+                <field name="is_kae"/>
+                <field name="is_kui"/>
+                <field name="is_kue"/>
+              </group>
+              <group>
+                <field name="grade"/>
+                <field name="grade_code" string = "Acta de Grado"/>
+                <field name="athlete_category" string = "Categoría del Atleta"/>
+                <field name="subdivision_id" domain="['|',('kata_div','=',True),'&amp;',('sex_div','=',sex),('category_div','=',athlete_category)]"/>
+              </group>
+              <group>
+                <field name="is_national"
+                attrs="{'invisible': [('is_grown', '=', True)]}"/>
+                <field name="is_state"
+                attrs="{'invisible': [('is_grown', '=', True)]}"/>
+                <field name="is_grown"
+                attrs="{'invisible': ['|',('is_state', '=', True),('is_national', '=', True)]}"/>
+              </group>
+            </group>
+            <group colspan="2">
+              <group name="nacionalidad" string="Documentos de Identidad" style="width:40%">
+                <field name="vat" string="Numero de cédula"/>
+                <field name="vat_exp_date" string = "Vencimiento" help = "Fecha de vencimiento de la cédula"/>
+                <field name="vat_pic"/>
+                <field name="passport"/>
+                <field name="passport_exp_date" string = "Vencimiento" help = "Fecha de vencimiento del pasaporte"/>
+                <field name="passport_pic"/>
+              </group>
+              <group name="direcciones" string="Dirección" style="width:60%">
+                <field name="country_id"/>
+                <field name="state_id"/>
+                <field name="municipality_id" string="Municipio" options='{"no_open": True}' domain="[('state_id','=',state_id)]"/>
+                <field name="city"/>
+                <field name="street"/>
+              </group>
+              <group string = "Representante Legal" colspan="4" style="width:100%">
+                <field name="legal_rep" style="width:60%"/>
+                <group string = "Datos del Padre" col="2" attrs="{'invisible': [('legal_rep','not in',('padre','ambos'))]}" style="width:50%">
+                  <field name="father_name" string = "Nombre" help = "Nombre y Apellido del padre con la primera letra en mayúscula y sin acentos"/>
+                  <field name="father_birth_date" string = "Fecha de nacimiento" help = "Fecha de nacimiento del padre"/>
+                  <field name="father_blood_type" string = "Tipo de sangre" help = "Tipo de sangre del padre"/>
+                  <field name="father_vat"/>
+                  <field name="father_vat_pic" string = "Foto de la Cédula" help = "Imágen en formato PNG o JPG de la cédula de identidad del padre"/>
+                  <field name="father_tlf" string = "Número de teléfono" help = "Número de teléfono del padre"/>
+                  <field name="father_mail" string = "E-mail" help = "Correo electrónico del padre"/>
+                  <field name="father_career" string = "Profesión" help = "Profesión o especialidad del padre"/>
+                  <field name="father_company" string = "Compañia" help = "Compañia o empresa donde trabaja el padre"/>
+                  <field name="father_job" string = "Cargo" help = "Cargo que desempeña el padre"/>
+                </group>
+                <group string = "Datos de la Madre" attrs="{'invisible': [('legal_rep','not in',('madre','ambos'))]}" style="width:50%">
+                  <field name="mother_name" string = "Nombre" help = "Nombre y Apellido de la madre con la primera letra en mayúscula y sin acentos"/>
+                  <field name="mother_birth_date" string = "Fecha de nacimiento" help = "Fecha de nacimiento de la madre"/>
+                  <field name="mother_blood_type" string = "Tipo de sangre" help = "Tipo de sangre de la madre"/>
+                  <field name="mother_vat"/>
+                  <field name="mother_vat_pic" string = "Foto de la Cédula" help = "Imágen en formato PNG o JPG de la cédula de identidad de la madre"/>
+                  <field name="mother_tlf" string = "Número de teléfono" help = "Número de teléfono de la madre"/>
+                  <field name="mother_mail" string = "E-mail" help = "Correo electrónico de la madre"/>
+                  <field name="mother_career" string = "Profesión" help = "Profesión o especialidad de la madre"/>
+                  <field name="mother_company" string = "Compañia" help = "Compañia o empresa donde trabaja la madre"/>
+                  <field name="mother_job" string = "Cargo" help = "Cargo que desempeña la madre"/>
+                </group>
+              </group>
+              <group string = "Datos Institucionales">
+                <field name="asociacion_id"/>
+                <field name="organizacion_id"/>
+                <field name="dojo_id"/>
+                <field name="sensei_id"/>
+                <field name = "user_id" groups = "sirius_athletic_system.sirius_group_sensei"/>
+                <field name = "category_id" groups = "sirius_athletic_system.sirius_group_director"/>
+              </group>
+              <group string = "Datos Médicos" style="width:50%">
+                <field name="blood_type"/>
+                <field name="is_allergic"/>
+                <field name="allergy_type"/>
+                <field name="is_injured"/>
+                <field name="injury_type"/>
+                <field name="medic_ext_data"/>
+              </group>
+            </group>
+            <group name="contacto" string= "Información de Contacto">
+              <group style="width:40%">
+                <field name="email"/>
+                <field name="mobile"/>
+                <field name="phone"/>
+              </group>
+              <group style="width:60%">
+                <field name="instagram"/>
+                <field name="facebook"/>
+                <field name="tiktok"/>
+                <field name="zoom"/>
+              </group>
+            </group>
+            <group name = "medidas" string = "Medidas del Atleta">
+              <field name="measure_ids">
+                <tree>
+                  <field name = "name"/>
+                  <field name = "athlete_height"/>
+                  <field name = "athlete_weight"/>
+                  <field name = "waist_diam"/>
+                  <field name = "plexus_diam"/>
+                  <field name = "wingspan"/>
+                  <field name = "height_wf"/>
+                  <field name = "shoe_size"/>
+                  <!--field name="academia_id"/-->
+                  <!--field name="sensei_id"/-->
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    <record id="athlete_view_pivot" model="ir.ui.view">
+        <field name="name">Tabla de Atletas</field>
+        <field name="model">sirius.athlete</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="athlete_category" type= "col"/> 
+                <field name="dojo_id" type= "row"/>
+            </pivot>
+        </field>
+    </record>
+    <record id = "athlete_view_graph" model="ir.ui.view">
+      <field name = "model">sirius.athlete</field>
+      <field name = "arch" type = "xml">
+        <graph type = "bar">
+          <field name = "name"/>
+        </graph>
+      </field>
+    </record>
+    <record id="view_search_book" model="ir.ui.view">
+      <field name="name">Filtros de Atletas</field>
+      <field name="model">sirius.athlete</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="blood_type"/>
+          <field name="grade"/>
+          <filter name="category" string="Categoría" context="{'group_by':'athlete_category'}"/>
+          <filter name="subdivision" string="Subdivisión de peso" context="{'group_by':'subdivision_id'}"/>
+          <filter name="sensei" string="Sensei" context="{'group_by':'sensei_id'}"/>
+          <filter name="dojo" string="Dojo" context="{'group_by':'dojo_id'}"/>
+          <filter name="organizacion" string="Organización" context="{'group_by':'organizacion_id'}"/>
+          <filter name="asociacion" string="Asociación" context="{'group_by':'asociacion_id'}"/>
+          <filter name="age" string="Edad" context="{'group_by':'age'}"/>
+          <filter name="grade" string="Grado" context="{'group_by':'grade'}"/>
+          <filter name="group_sex" string="Sexo" context="{'group_by':'sex'}"/>
+          <filter name="sex_male" string="Masculinos" domain="[('sex','=','male')]"/>
+          <filter name="sex_fem" string="Femeninos" domain="[('sex','=','female')]"/>
+          <filter name="category_alevin" string="Alevín (-6 años)" domain="[('athlete_category','=','category1')]"/>
+          <filter name="category_infantil" string="Infantil (7-9 años)" domain="[('athlete_category','=','category2')]"/>
+          <filter name="category_sub12" string="Sub-12 (10-11 años)" domain="[('athlete_category','=','category3')]"/>
+          <filter name="category_sub14" string="Sub-14 (12-13 años)" domain="[('athlete_category','=','category4')]"/>
+          <filter name="category_cadete" string="Cadete (14-15 años)" domain="[('athlete_category','=','category5')]"/>
+          <filter name="category_junior" string="Junior (16-17 años)" domain="[('athlete_category','=','category6')]"/>
+          <filter name="category_sub21" string="Sub-21 (18-21 años)" domain="[('athlete_category','=','category7')]"/>
+          <filter name="category_senior" string="Senior (+18 años)" domain="[('athlete_category','=','category8')]"/>
+          <filter name="is_kata" string="Especialidad: Kata" domain="['|',('is_kai','=',True),('is_kae','=',True)]"/>
+          <filter name="is_kumite" string="Especialidad: Kumite" domain="['|',('is_kui','=',True),('is_kue','=',True)]"/>
+          <filter name="atleta_inactivo" string="Inactivo" domain="[('active','=',True)]"/>
+          <filter name="atleta_activo" string="Activo" domain="[('active','=',False)]"/>
+        </search>
+      </field>
+    </record>
+  </data>
+</odoo>

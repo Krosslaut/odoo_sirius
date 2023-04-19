@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="res_partner_medical_addon" model="ir.ui.view">
+        <field name="name">Partner Addons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="inside">
+                <sheet name="medical_data" string="Datos Médicos">
+                  <group>
+                    <group>
+                      <field name="blood_group"/>
+                      <field name="is_allergic"/>
+                      <field name="is_injured"/>
+                      <field name="need_glass"/>
+                    </group>
+                    <group name="details">
+                      <field name="allergy_type"></field>
+                      <field name="injury_type"></field>
+                      <field name="medic_ext_data"></field>
+                    </group>
+                  </group>
+                </sheet>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

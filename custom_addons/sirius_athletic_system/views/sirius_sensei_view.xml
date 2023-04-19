@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sensei_view_kanban" model="ir.ui.view">
+        <field name="name">Sensei Kanban</field>
+        <field name="model">sirius.sensei</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field name="id"/>
+                <field name="image_1920"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="o_kanban_image">
+                                <t t-if="record.image_1920.value">
+                                    <img t-att-src="kanban_image('sirius.sensei', 'image_1920', record.id.raw_value)" alt="Sensei"/>
+                                </t>
+                                <t t-if="!record.image_1920.value">
+                                    <img t-att-src='_s + "/base/static/img/avatar.png"' alt="Sensei"/>
+                                </t>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4>
+                                    <a type="open">
+                                        <field name="name"/>
+                                    </a>
+                                </h4>
+                                <ul>
+                                    <li t-if="record.vat">
+                                        <span>Cédula:</span>
+                                        <field name="vat"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- explicit list view definition -->
+    <record id="sensei_view_list" model="ir.ui.view">
+        <field name="name">Lista de Sensei</field>
+        <field name="model">sirius.sensei</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="vat"/>
+                <field name="grade"/>
+                <field name="organizacion_id"/>
+                <field name="asociacion_id"/>
+                <!--field name="sensei_id"/-->
+            </tree>
+        </field>
+    </record>
+    <record id="sensei_view_form" model="ir.ui.view">
+      <field name="name">Formulario de Sensei</field>
+      <field name="model">sirius.sensei</field>
+      <field name="arch" type="xml">
+        <form string="Registro de Usuario">
+          <header>
+            <button type="object" name="create_sensei_user"
+                string="Registrar Sensei"
+                class="oe_highlight"
+                groups="sirius_athletic_system.sirius_group_director"
+                attrs="{'invisible': [('user_id', '=', False)]}"/>
+          </header>
+          <sheet>
+          <h1>Plantilla de Sensei</h1>
+          <group name="membrete">
+              <group name="imagen" style="width:20%">
+                <field name="image_1920" 
+                  widget='image' 
+                  class="oe_avatar" 
+                  nolabel="1"
+                  style="margin-right:10px;" 
+                  options='{"preview_image": "image_1920"}'/>
+              </group>
+              <group name="nombres" class="oe_title">
+                    <field name="name" placeholder="Name" required="1" invisible="1"/>   
+                    <field name="first_name" required="1" placeholder="Primer Nombre"  nolabel="1"/>
+                    <field name="second_name" placeholder="Segundo Nombre"  nolabel="1"/>
+                    <field name="middle_name" placeholder="Primer Apellido"  required="1"  nolabel="1"/>
+                    <field name="last_name" placeholder="Segundo Apellido"  nolabel="1"/>
+              </group>
+            </group>
+          <group>
+            <group>
+              <field name="date" required="1" string="Fecha de Nacimiento"/>
+            </group>
+            <group>
+              <field name="user_id" groups = "sirius_athletic_system.sirius_group_director"/>
+              <field name="category_id" groups = "sirius_athletic_system.sirius_group_director"/>
+            </group>  
+          </group>
+          <group name="identidad" string="Documentos de Identidad">
+            <group>
+              <field name="vat" string="Cédula"/>
+              <field name="vat_exp_date"/>
+              <field name="vat_pic"/>
+            </group>
+            <group>
+              <field name="passport"/>
+              <field name="passport_exp_date"/>
+              <field name="passport_pic"/>
+            </group>
+          </group>
+          <group>
+            <group name="direcciones" string="Dirección" style="width:50%">
+              <field name="country_id"/>
+              <field name="state_id"/>
+              <field name="municipality_id" string="Municipio" options='{"no_open": True}' domain="[('state_id','=',state_id)]"/>
+              <field name="city"/>
+              <field name="street"/>
+            </group>
+            <group string = "Datos Médicos" style="width:50%">
+              <field name="blood_type"/>
+              <field name="is_allergic"/>
+              <field name="allergy_type"/>
+              <field name="is_injured"/>
+              <field name="injury_type"/>
+              <field name="medic_ext_data"/>
+            </group>
+          </group>
+          <group name="contacto" string= "Información de Contacto">
+            <group style="width:40%">
+              <field name="email"/>
+              <field name="mobile"/>
+              <field name="phone"/>
+            </group>
+            <group style="width:60%">
+              <field name="instagram"/>
+              <field name="facebook"/>
+              <field name="tiktok"/>
+              <field name="zoom"/>
+            </group>
+          </group>
+          <group string="Datos Instucionales">
+            <field name="grade"/>
+            <field name="asociacion_id"/>
+            <field name="organizacion_id"/>
+            <field name="dojo_ids">
+              <tree>
+                <field name = "name"/>
+                <field name = "address"/>
+              </tree>
+            </field>
+            <field name="atleta_ids"></field>
+            <!--field name="belt"/-->
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <record id="sensei_view_pivot" model="ir.ui.view">
+    <field name="name">Tabla de Sensei</field>
+    <field name="model">sirius.sensei</field>
+    <field name="arch" type="xml">
+        <pivot>
+            <field name="date" type= "row"/>
+        </pivot>
+    </field>
+  </record>
+</odoo>

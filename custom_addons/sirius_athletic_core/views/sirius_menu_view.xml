@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<odoo>
+  <!-- Define root menu from Dojo module-->
+  <menuitem
+    id="menu_sirius"
+    name="Sirius Athletic System"
+    web_icon="sirius_athletic_system,static/description/icon.png" 
+  />
+  
+  <!-- Menu para mostrar la lista de Atletas -->
+  <menuitem id="menu_sirius_athlete"
+    name="Atletas"
+    parent="menu_sirius"
+  />
+  <!-- Acción para abrir la lista de Atletas -->
+  <act_window id="action_sirius_athlete"
+    name="Listado de Atletas"
+    res_model="sirius.athlete"
+    view_mode="kanban,tree,form,pivot,graph"
+  />
+  <!-- Menu para mostrar la lista de Atletas -->
+  <menuitem id="menu_sirius_athlete_sub"
+    name="Atletas"
+    parent="menu_sirius_athlete"
+    action="action_sirius_athlete"
+  />
+  <!-- <act_window id="action_sirius_medidas"
+    name="Historico de Pesajes"
+    res_model="sirius.measure"
+    view_mode="tree,form,graph,pivot"
+  /> -->
+  <!-- Menu para mostrar la lista de Atletas -->
+  <!-- <menuitem id="menu_sirius_medidas"
+    name="Pesajes"
+    parent="menu_sirius_athlete"
+    action="action_sirius_medidas"
+  /> -->
+    <!-- Acción para abrir la lista de Atletas -->
+  <!-- <act_window id="action_sirius_sensei"
+    name="Listado de Sensei"
+    res_model="sirius.sensei"
+    view_mode="kanban,tree,form,pivot"
+  /> -->
+  <!-- Menu para mostrar la lista de Atletas -->
+  <!-- <menuitem id="menu_sirius_sensei"
+    name="Sensei"
+    parent="menu_sirius"
+    action="action_sirius_sensei"
+  /> -->
+  <!-- <act_window id="action_sirius_dojo"
+    name="Listado de Dojos"
+    res_model="sirius.dojo"
+    view_mode="kanban,tree,form"
+  /> -->
+  <!-- Menu para mostrar la lista de Atletas -->
+  <!-- <menuitem id="menu_sirius_dojo"
+    name="Dojos"
+    parent="menu_sirius"
+    action="action_sirius_dojo"
+  /> -->
+  />
+  <!-- <menuitem id="menu_sirius_institutions"
+    name="Instituciones"
+    parent="menu_sirius"
+    groups="sirius_group_sensei"
+  /> -->
+  <!-- <act_window id="action_sirius_organizacion"
+    name="Listado de Organizaciones"
+    res_model="sirius.organizacion"
+    view_mode="kanban,tree,form"
+  /> -->
+  <!-- <menuitem id="menu_sirius_organizacion"
+    name="Organizaciónes"
+    parent="menu_sirius_institutions"
+    action="action_sirius_organizacion"
+  /> -->
+  <!-- <act_window id="action_sirius_asociacion"
+    name="Listado de Asociaciones"
+    res_model="sirius.asociacion"
+    view_mode="kanban,tree,form"
+  /> -->
+  <!-- Menu para mostrar la lista de Atletas -->
+  <!-- <menuitem id="menu_sirius_asociacion"
+    name="Asociaciones"
+    parent="menu_sirius_institutions"
+    action="action_sirius_asociacion"
+  /> -->
+  
+</odoo>

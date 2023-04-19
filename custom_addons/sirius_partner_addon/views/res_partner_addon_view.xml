@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="res_partner_addon" model="ir.ui.view">
+      <field name="name">Partner Addons</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="company_type" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="website" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="name" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="vat" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="country_id" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="state_id" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="street2" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="street" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="city" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="zip" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="category_id" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="parent_id" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </field>
+        <field name="phone" position="before">
+            <separator name="id" string="Identificación">
+            </separator>
+            <field name="user_code" placeholder="Código de Usuario" string="Código de Usuario"/>
+            <field name="vat" string="Cédula"/>
+            <field name="vat_exp_date"/>
+            <field name="vat_pic"/>
+            <field name="passport"/>
+            <field name="passport_exp_date"/>
+            <field name="passport_pic"/>
+            <separator name="rrss" string="Contacto">
+            </separator>
+          </field>
+        <span name="address_name" position="before">
+            <field name="birth_date" string="Fecha de Nac."/>
+            <field name="age" string="Edad" readonly="1" />
+            <field name="sex" string="Sexo"/>
+        </span>
+          <span name="address_name" position="after">
+            <div name="partner_address_country" class="d-flex justify-content-between">
+                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            </div>
+            <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+            <field name="street" placeholder="Street..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+            <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+        </span>
+        <field name="name" position="replace">
+            <div class="oe_title w-auto">
+            <h1> 
+              <field name="name" placeholder="Name" required="1" invisible="1"/>
+                <table>
+                    <tr style="padding-right:20px;">
+                      <td style="padding-left:10px;">
+                        <field name="first_name" required="1" placeholder="1er. Nombre"/>
+                      </td>
+                      <td style="padding-left:10px;">
+                        <field name="second_name" placeholder="2do. Nombre"/>
+                      </td>
+                      <td style="padding-left:10px;">
+                        <field name="middle_name" placeholder="1er. Apellido"  required="1" />
+                      </td>
+                      <td style="padding-left:10px;">
+                        <field name="last_name" placeholder="2do. Apellido"/>
+                      </td>
+                    </tr>
+                </table>
+            </h1>
+            </div>
+        </field>
+        <xpath expr="//form/sheet/group/group[2]" position="inside">
+            <field name="instagram"/>
+            <field name="facebook"/>
+            <field name="tiktok"/>
+            <field name="zoom"/>
+        </xpath>
+        <xpath expr="//form/sheet/notebook/page[3]" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//form/sheet/notebook/page[2]" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </xpath>
+        <xpath expr="//form/sheet/notebook/page[1]" position="attributes">
+            <attribute name="invisible">True</attribute>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

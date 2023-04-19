@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="athlete_category_view">
+        <field name = "name">athlete_category_view</field>
+        <field name = "model">sirius.athlete</field>
+        <field name = "type">form</field>
+        <field name = "inherit_id" ref="sirius_athletic_system.atleta_view_form"/>
+        <field name = "arch" type = "xml">
+            <group name = "nombres" position = "after">
+                <group>
+                    <field name = "category_ids">
+                        <tree string="Categorias">
+                            <field name = "category_name"/>
+                            <field name = "disciplina"/>
+                        </tree>
+                    </field>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

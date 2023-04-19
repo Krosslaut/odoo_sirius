@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="module_sirius_category" model="ir.module.category">
+        <field name="name">Sirius Athletic System</field>
+    </record>
+<!-- Library Athlete Group -->
+    <record id="sirius_group_athlete" model="res.groups">
+        <field name="name">Atletas</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="users"
+            eval="[(4,ref('base.group_user'))]"/>
+    </record>
+
+    <!-- <record id="sirius_group_sensei" model="res.groups">
+        <field name="name">Sensei</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="implied_ids" eval="[(4,ref('sirius_athletic_system.sirius_group_athlete')),(4,ref('base.group_partner_manager'))]"/>
+        <field name="users" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+
+    <record id="sirius_group_director" model="res.groups">
+        <field name="name">Director Técnico</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="implied_ids" eval="[(4,ref('sirius_athletic_system.sirius_group_sensei')),(4,ref('base.group_system'))]"/>
+        <field name="users" eval="[(4,ref('base.user_admin'))]"/>
+    </record>
+    <record id="sirius_group_sup_asoc" model="res.groups">
+        <field name="name">Director de Asociación</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="implied_ids" eval="[(4,ref('sirius_athletic_system.sirius_group_sensei')),(4,ref('base.group_partner_manager'))]"/>
+        <field name="users" eval="[(4,ref('base.group_user'))]"/>
+    </record>
+    <record id="sirius_group_sup_org" model="res.groups">
+        <field name="name">Director de Organiación</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="implied_ids" eval="[(4,ref('sirius_athletic_system.sirius_group_sensei')),(4,ref('base.group_partner_manager'))]"/>
+        <field name="users" eval="[(4,ref('base.group_user'))]"/>
+    </record> -->
+    <record id="sirius_group_administrator" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="module_sirius_category"/>
+        <field name="implied_ids" eval="[(4,ref('base.group_system'))]"/>
+        <field name="users" eval="[(4,ref('base.user_admin'))]"/>
+    </record>
+    <!-- <record id="athlete_director_rule" model="ir.rule">
+        <field name="name">director sees all</field>
+        <field name="model_id" ref="model_sirius_athlete"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_director'))]"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="athlete_user_rule" model="ir.rule">
+        <field name="name">athletes only for themself</field>
+        <field name="model_id" ref="model_sirius_athlete"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_athlete'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),'|',('user_id','=',user.id),('sensei_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="asociacion_user_rule" model="ir.rule">
+        <field name="name">asociacion rule for athletes</field>
+        <field name="model_id" ref="model_sirius_athlete"/>
+        <field name="groups" eval="[(4,ref('sirius_athletic_system.sirius_group_sup_asoc'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),'|',('user_id','=',user.id),('asociacion_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="organizacion_user_rule" model="ir.rule">
+        <field name="name">Organization rule for athletes</field>
+        <field name="model_id" ref="model_sirius_athlete"/>
+        <field name="groups" eval="[(4,ref('sirius_athletic_system.sirius_group_sup_org'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),'|',('user_id','=',user.id),('organizacion_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="measure_user_rule" model="ir.rule">
+        <field name="name">Athletes only see relevant data</field>
+        <field name="model_id" ref="model_sirius_measure"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_athlete'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),('athlete_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="measure_sensei_rule" model="ir.rule">
+        <field name="name">sensei only see relevant data</field>
+        <field name="model_id" ref="model_sirius_measure"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_sensei'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),('athlete_id.sensei_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="measure_asociation_rule" model="ir.rule">
+        <field name="name">asociation only see relevant data</field>
+        <field name="model_id" ref="model_sirius_measure"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_sup_asoc'))]"/>
+        <field name="domain_force">
+            ['|',('create_uid','=',user.id),('athlete_id.asociacion_id.user_id','=',user.id)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+    <!-- <record id="measure_director_rule" model="ir.rule">
+        <field name="name">director see all data</field>
+        <field name="model_id" ref="model_sirius_measure"/>
+        <field name="groups" eval="[(4, ref('sirius_athletic_system.sirius_group_director'))]"/>
+        <field name="domain_force">
+            [(1,'=',1)]
+        </field>
+        field name="groups" eval="[(4,ref('base.group_user'))]"/
+    </record> -->
+
+ <!-- Library Athlete Views Rules -->
+</odoo>

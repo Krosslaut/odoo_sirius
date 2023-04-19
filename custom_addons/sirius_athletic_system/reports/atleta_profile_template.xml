@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_report" model="report.paperformat">
+        <field name="name">Ficha de Atleta</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="orientation">Landscape</field>
+        <field name="page_height">216</field>
+        <field name="page_width">278</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">1</field>
+        <field name="dpi">90</field>
+    </record>
+    <template id="atleta_profile_template">
+        <div class="header"></div>
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <!-- CUERPO -->
+                <div class="page" style="font-size:12px;">
+                    <t t-foreach="docs" t-as="doc">
+                        <table style="width:100%;padding:10px;">
+                            <colgroup>
+                                <col style="width: 15%"/>
+                                <col style="width: 20%"/>
+                                <col style="width: 15%"/>
+                                <col style="width: 20%"/>
+                                <col style="width: 15%"/>
+                                <col style="width: 15%"/>
+                            </colgroup>
+                            <tr style="padding:10px;">
+                                <th rowspan="16">
+                                    <span t-field="doc.image_128" t-options='{
+                                        "widget": "image", 
+                                        "style":"width: 100px; 
+                                            height:auto;"}' t-att-alt="Image"/>
+                                    <br/>
+                                    <span t-field="doc.qr_code" t-options='{
+                                        "widget": "image", 
+                                        "style":"width: 100px; 
+                                            height:auto;"}' t-att-alt="Image"/>
+                                </th>
+                                <th colspan="4" style="font-size:20px; text-align:center">
+                                Planilla de Identificación del Atleta
+                                </th>
+                                <th rowspan="16">
+                                    <img src="/sirius_athletic_system/static/description/federacion.png" style="max-height: 100px;"/>
+                                    <br/>
+                                    <t t-if = "doc.asociacion_id">
+                                        <span t-field="doc.asociacion_id.pic" t-options='{
+                                            "widget": "image", 
+                                            "style":"width: 100px; 
+                                                    height:auto;"}' t-att-alt="Image"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.organizacion_id">
+                                        <span t-field="doc.organizacion_id.pic" t-options='{
+                                            "widget": "image", 
+                                            "style":"width: 100px; 
+                                                height:auto;"}' t-att-alt="Image"/>
+                                    </t>
+                                </th>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th>
+                                    <span>Primer Nombre: </span>
+                                    <br/>
+                                    <span>Segundo Nombre: </span>
+                                    <br/>
+                                    <span>Primer Apellido: </span>
+                                    <br/>
+                                    <span>Segundo Apellido: </span>
+                                    <br/>
+                                </th>
+                                <td>
+                                    <span t-field = "doc.first_name"/>
+                                    <br/>
+                                    <span t-field = "doc.second_name"/>
+                                    <br/>
+                                    <span t-field = "doc.middle_name"/>
+                                    <br/>
+                                    <span t-field = "doc.last_name"/>
+                                </td>
+                                <th>
+                                    <span>Fecha de Nacimiento: </span>
+                                    <br/>
+                                    <span>Cédula: </span>
+                                    <br/>
+                                    <span>Género: </span>
+                                    <br/>
+                                    <span>Tipo de Sangre: </span>
+                                    <br/>
+                                </th>
+                                <td>
+                                    <span t-field= "doc.date"/>
+                                    <br/>
+                                    <span t-field= "doc.vat"/>
+                                    <br/>
+                                    <span t-field= "doc.sex"/>
+                                    <br/>
+                                    <span t-field= "doc.blood_type"/>
+                                </td>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th colspan="4" style="font-size:14px; text-align:left">
+                                Información de Contacto
+                                </th>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th>
+                                    <span>Teléfono: </span>
+                                    <br/>
+                                    <t t-if = "not doc.phone == ''">
+                                        <br/>
+                                    </t>
+                                    <span>Correo Electrónico: </span>
+                                </th>
+                                <td>
+                                    <span t-field="doc.mobile"/>
+                                    <br/>
+                                    <t t-if = "not doc.phone == ''">
+                                        <span t-field="doc.phone"/>
+                                        <br/>
+                                    </t>
+                                    <span t-field="doc.email"/>
+                                </td>
+                                <td colspan = "2">
+                                    <strong>Dirección: </strong>
+                                    <t t-if = "doc.street">
+                                        <span t-field="doc.street"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.city">
+                                        <span t-field="doc.city"/>
+                                    </t>
+                                    <t t-if = "doc.state_id">
+                                        <span t-field="doc.state_id"/>
+                                    </t>
+                                    <t t-if = "doc.country_id">
+                                        <span t-field="doc.country_id"/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th colspan="4" style="font-size:14px; text-align:left">
+                                Información de los Representantes
+                                </th>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <t t-if = "doc.legal_rep == 'padre' or doc.legal_rep == 'ambos'">
+                                    <th colspan="2" style="font-size:12px; text-align:left">
+                                    Datos del padre
+                                    </th>
+                                </t>
+                                <t t-if = "doc.legal_rep == 'madre' or doc.legal_rep == 'ambos'">
+                                    <th colspan="2" style="font-size:12px; text-align:left">
+                                    Datos de la Madre
+                                    </th>
+                                </t>
+                            </tr>
+                            <tr style="font-size:12px;padding:10px;border-style: solid">
+                                <t t-if = "doc.legal_rep == 'padre' or doc.legal_rep == 'ambos'">
+                                    <th>
+                                        <strong>Primer Nombre: </strong>
+                                        <br/>
+                                        <strong>Segundo Nombre: </strong>
+                                        <br/>
+                                        <strong>Primer Apellido: </strong>
+                                        <br/>
+                                        <strong>Segundo Apellido: </strong>
+                                        <br/>
+                                        <strong>Fecha de Nacimiento: </strong>
+                                        <br/>
+                                        <strong>Cédula: </strong>
+                                        <br/>
+                                        <strong>Teléfono: </strong>
+                                        <br/>
+                                        <strong>Correo Electrónico: </strong>
+                                        <br/>
+                                        <strong>Profesión: </strong>
+                                        <br/>
+                                        <strong>Compañia: </strong>
+                                    </th>
+                                    <td>
+                                        <span t-field = "doc.father_first_name"/>
+                                        <br/>
+                                        <span t-field = "doc.father_second_name"/>
+                                        <br/>
+                                        <span t-field = "doc.father_middle_name"/>
+                                        <br/>
+                                        <span t-field = "doc.father_last_name"/>
+                                        <br/>
+                                        <span t-field = "doc.father_birth_date"/>
+                                        <br/>
+                                        <span t-field = "doc.father_vat"/>
+                                        <br/>
+                                        <span t-field = "doc.father_tlf"/>
+                                        <br/>
+                                        <span t-field = "doc.father_mail"/>
+                                        <br/>
+                                        <span t-field = "doc.father_career"/>
+                                        <br/>
+                                        <span t-field = "doc.father_company"/>
+                                    </td>
+                                </t>
+                                <t t-if = "doc.legal_rep == 'madre' or doc.legal_rep == 'ambos'">
+                                    <th>
+                                        <strong>Primer Nombre: </strong>
+                                        <br/>
+                                        <strong>Primer Apellido: </strong>
+                                        <br/>
+                                        <strong>Segundo Nombre: </strong>
+                                        <br/>
+                                        <strong>Segundo Apellido: </strong>
+                                        <br/>
+                                        <strong>Fecha de Nacimiento: </strong>
+                                        <br/>
+                                        <strong>Cédula: </strong>
+                                        <br/>
+                                        <strong>Teléfono: </strong>
+                                        <br/>
+                                        <strong>Correo Electrónico: </strong>
+                                        <br/>
+                                        <strong>Profesión: </strong>
+                                        <br/>
+                                        <strong>Compañia: </strong>
+                                    </th>
+                                    <td>
+                                        <span t-field = "doc.mother_first_name"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_second_name"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_middle_name"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_last_name"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_birth_date"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_vat"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_tlf"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_mail"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_career"/>
+                                        <br/>
+                                        <span t-field = "doc.mother_company"/>
+                                    </td>
+                                </t>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th colspan="4" style="font-size:14px; text-align:left">
+                                Información Institucional
+                                </th>
+                            </tr>
+                            <tr style="padding:10px;border-style: solid">
+                                <th>
+                                    <span>Sensei: </span><br/>
+                                    <span>Dojo: </span><br/>
+                                    <span>Organización: </span><br/>
+                                    <span>Asociación: </span>
+                                </th>
+                                <td>
+                                    <t t-if = "doc.sensei_id">
+                                        <span t-field="doc.sensei_id"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.dojo_id">
+                                        <span t-field="doc.dojo_id"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.organizacion_id">
+                                        <span t-field="doc.organizacion_id"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.asociacion_id">
+                                        <span t-field="doc.asociacion_id"/>
+                                        <br/>
+                                    </t>
+                                </td>
+                                <th>
+                                    <strong>Grado: </strong><br/>
+                                    <strong>Especialidad: </strong><br/>
+                                <t t-if = "doc.is_kui and doc.is_kai and doc.is_kue and doc.is_kae">
+                                    <br/>
+                                </t>
+                                    <strong>Categoría: </strong><br/>
+                                <t t-if = "doc.is_kui">
+                                    <strong>Sub Categoría: </strong><br/>
+                                </t>
+                                    <strong>Fichajes: </strong>
+                                </th>
+                                <td>
+                                    <span t-field="doc.grade"/>
+                                    <br/>
+                                    <t t-if = "doc.is_kai">
+                                        <span>Kata</span>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.is_kui">
+                                        <span>Kumite</span>
+                                        <br/>
+                                    </t>
+                                    <span t-field = "doc.athlete_category"/><br/>
+                                    <t t-if = "doc.is_kui">
+                                        <span t-field="doc.subdivision_id"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.is_national">
+                                        <span>Federado</span>
+                                        <br/>
+                                    </t>
+                                    <t t-if = "doc.is_state">
+                                        <span>Asociación</span>
+                                        <br/>
+                                    </t>
+                                </td>
+                            </tr>                        
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

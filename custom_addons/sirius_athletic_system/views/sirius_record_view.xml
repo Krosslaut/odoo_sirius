@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <odoo>
+      <record id="measure_view_list" model="ir.ui.view">
+        <field name="name">Registro de Pesajes</field>
+        <field name="model">sirius.measure</field>
+        <field name="arch" type="xml">
+          <tree>
+            <field name = "athlete_id"/>
+            <field name = "name"/>
+            <field name = "athlete_height"/>
+            <field name = "athlete_weight"/>
+            <field name = "waist_diam"/>
+            <field name = "plexus_diam"/>
+            <field name = "wingspan"/>
+            <field name = "height_wf"/>
+            <field name = "shoe_size"/>
+            <!--field name="academia_id"/-->
+            <!--field name="sensei_id"/-->
+          </tree>
+        </field>
+      </record>
+      <record id="measure_view_form" model="ir.ui.view">
+        <field name="name">Registro de Pesajes</field>
+        <field name="model">sirius.measure</field>
+        <field name="arch" type="xml">
+          <form string="Registro de medidas">
+            <sheet>
+              <group>
+              <group name = "medidas" string = "Medidas del Atleta">
+                <field name="name"/>
+                <field name="athlete_height"/>
+                <field name ="athlete_weight"/>
+                <field name= "waist_diam"/>
+                <field name ="plexus_diam"/>
+                <field name="wingspan"/>
+                <field name="height_wf"/>
+                <field name="shoe_size"/>
+              </group>
+              <group>
+                <field name = "athlete_id"/>
+              </group>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+      <record id = "measure_view_pivot" model="ir.ui.view">
+        <field name = "model">sirius.measure</field>
+        <field name = "arch" type = "xml">
+          <pivot>
+            <field name = "athlete_id" type = "row"/>
+            <field name = "name" type = "row"/>
+            <field name = "athlete_height" type = "col"/>
+            <field name = "athlete_weight" type = "col"/>
+            <field name= "waist_diam" type = "col"/>
+            <field name ="plexus_diam" type = "col"/>
+            <field name="wingspan" type = "col"/>
+            <field name="height_wf" type = "col"/>
+            <field name = "shoe_size" type = "col"/>
+          </pivot>
+        </field>
+      </record>
+      <record id = "measure_view_graph" model="ir.ui.view">
+        <field name = "model">sirius.measure</field>
+        <field name = "arch" type = "xml">
+          <graph type = "bar">
+            <field name = "athlete_id"/>
+            <field name = "name"/>
+            <field name = "athlete_height"/>
+            <field name = "athlete_weight"/>
+            <field name= "waist_diam"/>
+            <field name ="plexus_diam"/>
+            <field name="wingspan"/>
+            <field name="height_wf"/>
+            <field name = "shoe_size"/>
+          </graph>
+        </field>
+      </record>
+      <record id="measure_view_search" model="ir.ui.view">
+        <field name="name">Filtrado de pesajes</field>
+        <field name="model">sirius.measure</field>
+        <field name="arch" type="xml">
+          <search>
+            <field name="name"/>
+            <field name="athlete_id"/>
+            <field name="dojo_related"/>
+            <filter name="category_alevin" string="Alevín (-6 años)" domain="[('athlete_id.athlete_category','=','category1')]"/>
+            <filter name="category_infantil" string="Infantil (7-9 años)" domain="[('athlete_id.athlete_category','=','category2')]"/>
+            <filter name="category_sub12" string="Sub-12 (10-11 años)" domain="[('athlete_id.athlete_category','=','category3')]"/>
+            <filter name="category_sub14" string="Sub-14 (12-13 años)" domain="[('athlete_id.athlete_category','=','category4')]"/>
+            <filter name="category_cadete" string="Cadete (14-15 años)" domain="[('athlete_id.athlete_category','=','category5')]"/>
+            <filter name="category_junior" string="Junior (16-17 años)" domain="[('athlete_id.athlete_category','=','category6')]"/>
+            <filter name="category_sub21" string="Sub-21 (18-21 años)" domain="[('athlete_id.athlete_category','=','category7')]"/>
+            <filter name="category_senior" string="Senior (+18 años)" domain="[('athlete_id.athlete_category','=','category8')]"/>
+            <filter name="atleta" string="Atletas" context="{'group_by':'athlete_id'}"/>
+            <filter name="pesaje" string="Fecha de Pesaje" context="{'group_by':'name'}"/>
+            <filter name="dojo" string="Dojos" context="{'group_by':'dojo_related'}"/>
+          </search>
+        </field>
+      </record>
+    </odoo>

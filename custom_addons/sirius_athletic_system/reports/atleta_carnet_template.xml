@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_carnet" model="report.paperformat">
+      <field name="name">Carnet</field>
+      <field name="default" eval="True"/>
+      <field name="format">custom</field>
+      <field name="orientation">Landscape</field>
+      <field name="page_height">95</field>
+      <field name="page_width">60</field>
+      <field name="margin_top">5</field>
+      <field name="margin_bottom">5</field>
+      <field name="margin_left">5</field>
+      <field name="margin_right">5</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">0</field>
+      <field name="dpi">90</field>
+    </record>
+    <template id="atleta_carnet_template">
+        <div class="header"></div>
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">                
+            
+            <!-- CUERPO -->
+                <div class="page">
+                    <t t-foreach="docs" t-as="doc">
+                    <table style="width:100%;padding:10px;border-style: solid solid solid solid;text-align:left;border-collapse:collapse;">
+                        <tr colspan ="3">
+                            <td style="width:20%;">
+                                <span t-field="doc.image_128" 
+                                    t-options='{"widget": "image", "style":"width: 60px; height:60px;margin-right:5px"}'
+                                    t-att-alt="Image"/>
+                            </td>
+                            <td style="width:60%;font-size:20px;text-align:center">
+                                <span t-field="doc.name"/>
+                            </td>
+                            <td style="width:20%;">
+                                <img t-attf-src="data:image/*;base64,{{doc.organizacion_id.pic}}" style="max-height:50px; max-width:50px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td/>
+                            <td style="width:60%;font-size:12px;text-align:left">
+                                <strong>Cédula: </strong><span t-field="doc.vat"/><br/>
+                                <strong>Grado: </strong><span t-field="doc.grade"/><br/>
+                                <strong>Categoría: </strong><span t-field="doc.athlete_category"/><br/>
+                                <t t-if="doc.is_kai or doc.is_kae or doc.is_kui or doc.is_kue">
+                                <table>
+                                    <tr rowspan ="2">
+                                    <strong>Especialidad: </strong><br/>
+                                </tr>
+                                <tr><td>
+                                    <t t-if="doc.is_kai">
+                                        <l>Kata Individual</l><br/>
+                                    </t>
+                                </td>
+                                <td style = "padding-left:10px">
+                                    <t t-if="doc.is_kui">
+                                        <l>Kumite Individual</l><br/>
+                                    </t>
+                                </td></tr>
+                                <tr><td>
+                                    <t t-if="doc.is_kae">
+                                        <l>Kata Equipo</l><br/>
+                                    </t>
+                                </td>
+                                <td style = "padding-left:10px">
+                                    <t t-if="doc.is_kue">
+                                        <l>Kumite Equipo</l><br/>
+                                    </t>
+                                </td></tr>
+                            </table>
+                        </t>
+                                <strong>Subdivisión: </strong>
+                                <span t-field="doc.subdivision_id.name"/>
+                            </td>
+                            <td/>
+                        </tr>
+                    </table>
+                </t>
+            </div>
+            <p style="page-break-before:always;">
+                <div class="page">
+                    <t t-foreach="docs" t-as="doc">
+                        <table style="width:100%;padding:10px;border-style: solid solid solid solid;text-align:left;border-collapse:collapse;font-size:12px">
+                            <tr colspan="2">
+                                <td style="width:20%">
+                                    <span t-field="doc.qr_code" 
+                                    t-options='{"widget": "image", "style":"width: 60px; height:60px;margin-right:5px"}'
+                                    t-att-alt="Image"/>
+                            </td>
+                            <td style="width:80%;">
+                                <strong>Tipo de Sangre:</strong>
+                                <span t-field="doc.blood_type"/><br/>
+                                <t t-if="doc.phone"> 
+                                  <strong>Teléfono:</strong>
+                                  <span t-field="doc.phone"/>
+                                    <br/>
+                                </t>
+                                <t t-if="doc.mobile">
+                                   <strong>Celular:</strong>
+                                    <span t-field="doc.mobile"/>
+                                    <br/>
+                                </t>
+                                <t t-if="doc.email">
+                                  <strong>E-mail:</strong>
+                                  <span t-field="doc.email"/>
+                                  <br/>
+                                </t>
+                                <strong>Dirección</strong><br/>
+                                <span t-field="doc.street"/><br/>
+                                <span t-field="doc.city"/>&#160;
+                                <span t-field="doc.state_id"/>&#160;
+                                <span t-field="doc.country_id"/><br/>
+                                <t t-if="doc.asociacion_id">
+                                <strong><span t-field="doc.asociacion_id.name"/></strong>
+                                </t>
+                                <t t-if="doc.organizacion_id">
+                                    <strong><span t-field="doc.organizacion_id.name"/></strong>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    </t>
+                </div>
+                </p>
+            </t>
+        </t>
+    </template>
+</odoo>

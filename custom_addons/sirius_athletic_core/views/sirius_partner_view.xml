@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="res_partner_addon" model="ir.ui.view">
+        <field name="name">Partner Athletic Addons</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet" position="inside">
+                <sheet name="athletic_data" string="Datos Atléticos">
+                    <group>
+                        <field name="is_athlete"/>
+                        <field name="is_sensei"/>
+                    </group>
+                </sheet>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

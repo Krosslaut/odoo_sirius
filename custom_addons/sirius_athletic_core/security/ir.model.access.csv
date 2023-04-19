@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sirius_self_athlete,SiriusSelfAthlete,model_sirius_athlete,sirius_group_athlete,1,0,0,0
+access_sirius_athlete_administrator,SiriusAthleteAdministrator,model_sirius_athlete,sirius_group_administrator,1,1,1,1
+

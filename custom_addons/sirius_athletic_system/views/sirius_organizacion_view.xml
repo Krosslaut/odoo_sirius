@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="organizacion_view_kanban" model="ir.ui.view">
+        <field name="name">Organizacion Kanban</field>
+        <field name="model">sirius.organizacion</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field name="id"/>
+                <field name="pic"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_res_partner_kanban">
+                            <div class="o_kanban_image">
+                                <t t-if="record.pic.value">
+                                    <img t-att-src="kanban_image('sirius.organizacion', 'pic', record.id.raw_value)" alt="Organizacion"/>
+                                </t>
+                                <t t-if="!record.pic.value">
+                                    <img t-att-src='_s + "/base/static/img/avatar.png"' alt="Organizacion"/>
+                                </t>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <h4>
+                                    <a type="open">
+                                        <field name="name"/>
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- explicit list view definition -->
+    <record id="organizacion_view_list" model="ir.ui.view">
+        <field name="name">Lista de Organizaciones</field>
+        <field name="model">sirius.organizacion</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="direccion"/>
+                <field name="asociacion_ids"/>
+                <!--field name="academia_id"/-->
+                <!--field name="sensei_id"/-->
+            </tree>
+        </field>
+    </record>
+    <record id="organizacion_view_form" model="ir.ui.view">
+      <field name="name">Formulario de Organizacion</field>
+      <field name="model">sirius.organizacion</field>
+      <field name="arch" type="xml">
+        <form string="Registro de Organizaciones">
+          <sheet>
+          <h1>Plantilla de Organizacion</h1>
+            <group col= "2" string="Identificación">
+              <group style="width:10%">
+                <field name="pic" 
+                  widget='image' 
+                  class="oe_avatar" 
+                  nolabel="1"
+                  style="margin-right:10px;" 
+                  options='{"preview_image": "pic"}'/>
+              </group>
+              <group >  
+                <field name="name"/>
+                <field name="direccion"/>
+                <field name="notes"/>
+              </group>
+            </group>
+              <group name="instituciones" string="Instituciones" style="width:100%">
+                <field name="asociacion_ids"/>
+              </group>
+                <group string="Listado de sensei">
+                  <field name="sensei_ids"></field>
+                </group>
+                <group string="Listado de Dojos">
+                  <field name="dojo_ids"></field>
+                </group>
+                <group string="Listado de Atletas">
+                  <field name="atleta_ids"></field>
+                </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+</odoo>

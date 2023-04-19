@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="sirius_athletic_system.list">
+      <field name="name">sirius_athletic_system list</field>
+      <field name="model">sirius_athletic_system.sirius_athletic_system</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="sirius_athletic_system.action_window">
+      <field name="name">sirius_athletic_system window</field>
+      <field name="res_model">sirius_athletic_system.sirius_athletic_system</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="sirius_athletic_system.action_server">
+      <field name="name">sirius_athletic_system server</field>
+      <field name="model_id" ref="model_sirius_athletic_system_sirius_athletic_system"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="sirius_athletic_system" id="sirius_athletic_system.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="sirius_athletic_system.menu_1" parent="sirius_athletic_system.menu_root"/>
+    <menuitem name="Menu 2" id="sirius_athletic_system.menu_2" parent="sirius_athletic_system.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="sirius_athletic_system.menu_1_list" parent="sirius_athletic_system.menu_1"
+              action="sirius_athletic_system.action_window"/>
+    <menuitem name="Server to list" id="sirius_athletic_system" parent="sirius_athletic_system.menu_2"
+              action="sirius_athletic_system.action_server"/>
+-->
+  </data>
+</odoo>

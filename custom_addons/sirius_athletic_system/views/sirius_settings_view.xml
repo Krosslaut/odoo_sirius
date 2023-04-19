@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="subdivision_view_list" model="ir.ui.view">
+        <field name="name">Lista de Atletas</field>
+        <field name="model">sirius.settings.subdivision</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="category_div"/>
+                <field name="sex_div"/>
+                <!--field name="academia_id"/-->
+                <!--field name="sensei_id"/-->
+            </tree>
+        </field>
+    </record>
+</odoo>

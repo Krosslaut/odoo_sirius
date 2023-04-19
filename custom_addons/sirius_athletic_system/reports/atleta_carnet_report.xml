@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="report_atleta_carnet" model="ir.actions.report">
+        <field name="name">Carnet</field>
+        <field name="model">sirius.athlete</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sirius_athletic_system.atleta_carnet_template</field>
+        <field name="report_file">sirius_athletic_system.atleta_carnet_template</field>
+        <field name="binding_model_id" ref="model_sirius_athlete"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

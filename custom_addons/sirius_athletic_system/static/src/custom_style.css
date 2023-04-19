@@ -1,0 +1,3 @@
+.o_form_field_no_label > label {
+    display: none;
+}

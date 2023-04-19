@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="atleta_qr_code">
+        <field name = "name">dojo_atleta_qr_code</field>
+        <field name = "model">sirius.athlete</field>
+        <field name = "type">form</field>
+        <field name = "inherit_id" ref="sirius_athletic_system.atleta_view_form"/>
+        <field name = "arch" type = "xml">
+            <group name = "nombres" position = "before">
+                <group name="qr">
+                    <field name = "qr_code" widget = "image" class = "oe_avatar" nolabel="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="sensei_qr_code">
+        <field name = "name">dojo_sensei_qr_code</field>
+        <field name = "model">sirius.sensei</field>
+        <field name = "type">form</field>
+        <field name = "inherit_id" ref="sirius_athletic_system.sensei_view_form"/>
+        <field name = "arch" type = "xml">
+            <group name = "nombres" position = "before">
+                <group name="qr">
+                    <field name = "qr_code" widget = "image" class = "oe_avatar" nolabel="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

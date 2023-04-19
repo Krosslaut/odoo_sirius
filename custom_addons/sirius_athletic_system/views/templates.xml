@@ -1,0 +1,7 @@
+<odoo>
+    <template id="assets_backend" name="sirius_athletic_system assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="sirius_athletic_system/static/src/custom_style.css"/>
+        </xpath>
+    </template>
+</odoo>
